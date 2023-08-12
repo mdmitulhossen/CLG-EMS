@@ -1,0 +1,15 @@
+.list_style li::before {
+    content: '';
+    display: inline-block;
+    margin-right: 10px;
+
+    /* Height of the list image*/
+    height: 10px;
+
+    /* Width of the list image*/
+    width: 10px;
+    background-color: #5B58DB;
+    background-image: url("../../images/icons8-checkmark-48.svg");
+    background-clip: content-box;
+    background-blend-mode: overlay;
+}
