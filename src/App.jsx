@@ -20,6 +20,7 @@ import DashBoardMain from './pages/DashBoardMain';
 import Projects from './pages/Projects';
 import AllEmployee from './pages/AllEmployee';
 import TaskCalendar from './pages/TaskCalendar';
+import AboutUs from './pages/AboutUs';
 
 function App() {
 
@@ -51,6 +52,7 @@ function App() {
                 <Route path='/' element={<DashBoardMain />} />
                 <Route path='/projects' element={<Projects />} />
                 <Route path='/allEmployee' element={<AllEmployee />} />
+                <Route path='/about' element={<AboutUs />} />
                 <Route path='/calendar' element={<TaskCalendar />} />
                 <Route path='/login' element={<Login />} />
               </Routes>
