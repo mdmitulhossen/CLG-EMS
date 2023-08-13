@@ -2,6 +2,7 @@ import { Breadcrumb } from 'antd';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import AboutUsHead from '../partials/AboutUs/AboutUsHead';
+import AboutUsMain from '../partials/AboutUs/AboutUsMain';
 
 const AboutUs = () => {
     return (
@@ -24,6 +25,7 @@ const AboutUs = () => {
 
             <div>
                 <AboutUsHead/>
+                <AboutUsMain/>
             </div>
         </div>
     );
