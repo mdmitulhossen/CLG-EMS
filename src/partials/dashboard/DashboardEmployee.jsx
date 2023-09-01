@@ -8,11 +8,15 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
 import 'swiper/css';
+import { useAuth } from '../../Context/AuthContext';
 // import 'swiper/css/navigation';
 // import 'swiper/css/pagination';
 // import 'swiper/css/scrollbar';
 
 const DashboardEmployee = () => {
+    const [auth, setAuth] = useAuth();
+     
+
     return (
 
         <div className="col-span-full bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
@@ -21,6 +25,7 @@ const DashboardEmployee = () => {
             </header>
             <div className="">
                 <Swiper
+                key="a"
                     modules={[Autoplay]}
                     breakpoints={
                         {
@@ -49,16 +54,16 @@ const DashboardEmployee = () => {
 
 
                 >
-                    <SwiperSlide><EmployeeCard/></SwiperSlide>
-                    <SwiperSlide><EmployeeCard/></SwiperSlide>
-                    <SwiperSlide><EmployeeCard/></SwiperSlide>
-                    <SwiperSlide><EmployeeCard/></SwiperSlide> 
-                    <SwiperSlide><EmployeeCard/></SwiperSlide> 
-                    <SwiperSlide><EmployeeCard/></SwiperSlide> 
-                    <SwiperSlide><EmployeeCard/></SwiperSlide> 
-                    <SwiperSlide><EmployeeCard/></SwiperSlide> 
-                    <SwiperSlide><EmployeeCard/></SwiperSlide> 
-                    <SwiperSlide><EmployeeCard/></SwiperSlide> 
+
+                {
+                    auth.users.map((data,i)=>{
+                        return(
+                            <SwiperSlide><EmployeeCard key={i} name={data.name} position={data.position}/></SwiperSlide>
+                        )
+                    })
+                }
+                
+                  
                    
                 </Swiper>
 

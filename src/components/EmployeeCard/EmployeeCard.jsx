@@ -4,7 +4,7 @@ import { Tag } from 'antd';
 import { FacebookFilled,LinkedinOutlined } from '@ant-design/icons';
 import '../../css/Others-style/employeeCard.css'
 
-const EmployeeCard = () => {
+const EmployeeCard = ({name,position}) => {
     return (
 
         <div class="card">
@@ -13,9 +13,9 @@ const EmployeeCard = () => {
             </div>
             <div class="content">
                 <div class="detail">
-                    <h2 className='dark:text-slate-100 text-[#444]'>Emilia Roy<br />
+                    <h2 className='dark:text-slate-100 text-[#444]'>{name}<br />
                         <span><Tag color="#55acee">
-                            Web-developer
+                            {position}
                         </Tag></span>
                     </h2>
                     <ul class="sci">

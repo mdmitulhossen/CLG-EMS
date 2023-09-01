@@ -29,10 +29,10 @@ const DashBoardMain = () => {
             <WelcomeBanner />
 
             {/* Dashboard actions */}
-            <div className="sm:flex sm:justify-between sm:items-center mb-8">
+            <div className="sm:flex sm:justify-end sm:items-center mb-8">
 
                 {/* Left: Avatars */}
-                <DashboardAvatars />
+                {/* <DashboardAvatars /> */}
 
                 {/* Right: Actions */}
                 <div className="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2">

@@ -47,7 +47,7 @@
 }
 .user {
   display: flex;
-  margin-top: auto;
+  margin-top: 20px;
 }
 
 .user img {

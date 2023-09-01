@@ -1,0 +1,22 @@
+/* width */
+#attendanceList::-webkit-scrollbar {
+    height: 8px;
+}
+
+/* Track */
+#attendanceList::-webkit-scrollbar-track {
+    background: #f1f1f1;
+   border-radius: 50px;   /* round the corner of scrollbar track */
+}
+
+/* Handle */
+#attendanceList::-webkit-scrollbar-thumb {
+    background: #425a7d;
+    border-radius: 50px;
+}
+
+/* Handle on hover */
+#attendanceList::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+

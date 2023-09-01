@@ -13,7 +13,7 @@ const EmployeeHeadCard = () => {
                     <img className='w-full h-full object-cover rounded-lg' src={head} alt="" />
                 </div>
                 <div className='w-full space-y-2'>
-                    <h1 className='text-2xl'>Name</h1>
+                    <h1 className='text-2xl'>MD Mitul</h1>
                     <p className='font-medium text-sm text-white/70 text-justify'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe similique voluptate nostrum ipsa eveniet voluptates animi tempora quae voluptatem quisquam!</p>
                     <p className='text-white/90 font-medium'><span className='mr-2'><i class="fa-solid fa-envelope"></i> </span> m@gmail.com</p>
                     <p className='text-white/90 font-medium'><span className='mr-2'><i class="fa-solid fa-phone"></i> </span> 0175555555</p>
