@@ -9,12 +9,16 @@ import { BaseUrl } from '../utils/BaseUrl';
 import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useLogin } from '../Context/loginContext';
+import { toast } from 'react-toastify';
 
 const AllEmployee = () => {
     const [auth, setAuth] = useAuth();
+    const [userLogin, setUserLogin] = useLogin()
 
     const [loading, setLoading] = useState(false);
-     const [open, setOpen] = useState(false);
+     const [open1, setOpen1] = useState(false);
+     const [open2, setOpen2] = useState(false);
      const [employeeData, setEmployeeData] = useState([]);
 
      const [name, setName] = useState("");
@@ -25,7 +29,9 @@ const AllEmployee = () => {
      const [age, setAge] = useState(0);
      const [address, setAddress] = useState("");
 
+     const [deleteEmail, setDeleteEmail] = useState("");
 
+console.log("addEmployee",auth)
 
      const addEmployee = async () => {
             try {
@@ -39,12 +45,29 @@ const AllEmployee = () => {
                     address
                 });
                 console.log(res.data)
+            
+                toast.success("Employee Added Successfully!!");
                 window.location.reload()
             } catch (error) {
                 console.log(error)
             }
      }
      
+     const deleteEmployee = async () => {
+        console.log(deleteEmail)
+        const filterData = auth.users.filter((data)=>data.email === deleteEmail)
+        console.log(filterData)
+        try {
+            const res = await axios.delete(`${BaseUrl}/employee/delete/${filterData[0]._id}`);
+            console.log(res.data)
+        
+            toast.success("Employee Deleted Successfully!!");
+            window.location.reload()
+        } catch (error) {
+            console.log(error)
+        }
+     }
+
     // //  call api
     //  const getEmployee = async () => {
     //     try {
@@ -62,19 +85,24 @@ const AllEmployee = () => {
 
 
      
-     const showModal = () => {
-       setOpen(true);
+     const showModal1 = () => {
+       setOpen1(true);
+     };
+     const showModal2 = () => {
+       setOpen2(true);
      };
      const handleOk = () => {
        setLoading(true);
        setTimeout(() => {
          setLoading(false);
-         setOpen(false);
+         setOpen1(false);
+         setOpen2(false);
        }, 3000);
      };
      const handleCancel = () => {
-        addEmployee()
-       setOpen(false);
+       
+       setOpen1(false);
+       setOpen2(false);
      };
     console.log(BaseUrl)
     return (
@@ -111,7 +139,10 @@ const AllEmployee = () => {
                                     <input type="text" className='rounded-lg focus:border-[#1E293B]' placeholder="search here.."/>
                                 <button className='bg-[#1E293B] ml-4 hover:bg-[#1E293B]/80 duration-200 dark:bg-blue-500 dark:hover:bg-blue-400 text-white text-md font-semibold px-4 py-2 rounded-lg'>View All</button>
                                 {
-                                       auth.company && <button onClick={()=>showModal()} className='bg-[#1E293B] ml-4 hover:bg-[#1E293B]/80 duration-200 dark:bg-blue-500 dark:hover:bg-blue-400 text-white text-md font-semibold px-4 py-2 rounded-lg'>Add Employee</button>
+                                       userLogin.company && <button onClick={()=>showModal1()} className='bg-[#1E293B] ml-4 hover:bg-[#1E293B]/80 duration-200 dark:bg-blue-500 dark:hover:bg-blue-400 text-white text-md font-semibold px-4 py-2 rounded-lg'>Add</button>
+                                }
+                                {
+                                      userLogin.company && <button onClick={()=>showModal2()} className='bg-[#1E293B] ml-4 hover:bg-[#1E293B]/80 duration-200 dark:bg-blue-500 dark:hover:bg-blue-400 text-white text-md font-semibold px-4 py-2 rounded-lg'>Delete</button>
                                        
                                 }
                                 </div>
@@ -135,12 +166,12 @@ const AllEmployee = () => {
 
 
      <Modal
-        open={open}
+        open={open1}
         title="Add Employee"
         onOk={handleOk}
         onCancel={handleCancel}
         footer={[
-          <Button  className='bg-red-500 font-semibold text-white' key="back" onClick={handleCancel}>
+          <Button  className='bg-red-500 font-semibold text-white' key="back" onClick={addEmployee}>
             ADD
           </Button>,
         ]}
@@ -182,6 +213,44 @@ const AllEmployee = () => {
        
       </Modal>
 
+{/* modal 2 */}
+      <Modal
+        open={open2}
+        title="Delete Employee"
+        onOk={handleOk}
+        onCancel={handleCancel}
+        footer={[
+          <Button  className='bg-red-500 font-semibold text-white' key="back" onClick={deleteEmployee}>
+            Delete
+          </Button>,
+        ]}
+      >
+
+        {/* employee add form */}
+        <form action="">
+            <div className='grid grid-cols-2 gap-5'>
+            
+                <div className='col-span-full'>
+                    <label for="email">Email</label><br />
+                    <select id='email' className='w-full' onChange={(e)=>setDeleteEmail(e.target.value)}>
+                        <option value="" selected disabled>Select Email</option>
+                    {
+                               auth.users?.map((data,i)=>{
+                                return(
+                                    <option key={i}  value={data.email}>{data.email}</option>
+                                )
+                               })
+                        }
+                    </select>
+                   
+                </div>
+             
+          
+        
+            </div>
+        </form>
+       
+      </Modal>
         </div>
     );
 };

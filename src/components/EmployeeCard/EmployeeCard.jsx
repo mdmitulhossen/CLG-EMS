@@ -1,13 +1,18 @@
 import React from 'react';
 import img1 from '../../images/employee1.avif'
 import { Tag } from 'antd';
-import { FacebookFilled,LinkedinOutlined } from '@ant-design/icons';
+import { CloseOutlined, FacebookFilled,LinkedinOutlined } from '@ant-design/icons';
 import '../../css/Others-style/employeeCard.css'
 
 const EmployeeCard = ({name,position}) => {
+    const handleEmployeeDelete = () => {
+        console.log("click")
+    }
     return (
 
-        <div class="card">
+
+        <div  class="card ">
+         
             <div class="img-bx">
                 <img src={img1} alt="img" />
             </div>
@@ -35,7 +40,7 @@ const EmployeeCard = ({name,position}) => {
                 </div>
             </div>
         </div>
-
+       
     );
 };
 

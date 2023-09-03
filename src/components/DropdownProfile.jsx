@@ -3,13 +3,39 @@ import { Link } from 'react-router-dom';
 import Transition from '../utils/Transition';
 
 import UserAvatar from '../images/user-avatar-32.png';
+import { useLogin } from '../Context/loginContext';
+import {  toast } from 'react-toastify';
+
 
 function DropdownProfile({
   align
 }) {
-
   const [dropdownOpen, setDropdownOpen] = useState(false);
+const companyData = JSON.parse(localStorage.getItem("companyData"));
+console.log(companyData)
 
+
+  
+const [userLogin, setUserLogin] = useLogin()
+
+// useEffect(() => {
+//   const companyData = localStorage.getItem("companyData")
+//   setUserLogin({ ...userLogin,company:true, users: JSON.parse(companyData) })
+// }, [userLogin.company,userLogin.employee,userLogin.admin])
+
+const handleLogOut = async() => {
+    setUserLogin({ ...userLogin,company:false,employee:false,admin:false, users: null })
+    toast.success("logout successful!!");
+    localStorage.removeItem("companyData");
+    localStorage.removeItem("adminData");
+    localStorage.removeItem("employeeData");
+
+    // window.location.reload()
+    
+}
+
+  
+  // setDropdownOpen(!dropdownOpen)
   const trigger = useRef(null);
   const dropdown = useRef(null);
 
@@ -45,7 +71,7 @@ function DropdownProfile({
       >
         <img className="w-8 h-8 rounded-full" src={UserAvatar} width="32" height="32" alt="User" />
         <div className="flex items-center truncate">
-          <span className="truncate ml-2 text-sm font-medium dark:text-slate-300 group-hover:text-slate-800 dark:group-hover:text-slate-200">Acme Inc.</span>
+          <span className="truncate ml-2 text-sm font-medium dark:text-slate-300 group-hover:text-slate-800 dark:group-hover:text-slate-200">{companyData?`${companyData?.user?.name}`:"developer"}</span>
           <svg className="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400" viewBox="0 0 12 12">
             <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
           </svg>
@@ -68,7 +94,7 @@ function DropdownProfile({
           onBlur={() => setDropdownOpen(false)}
         >
           <div className="pt-0.5 pb-2 px-3 mb-1 border-b border-slate-200 dark:border-slate-700">
-            <div className="font-medium text-slate-800 dark:text-slate-100">Acme Inc.</div>
+            <div className="font-medium text-slate-800 dark:text-slate-100">{companyData?`${companyData?.user?.name}`:"developer"}</div>
             <div className="text-xs text-slate-500 dark:text-slate-400 italic">Administrator</div>
           </div>
           <ul>
@@ -84,8 +110,8 @@ function DropdownProfile({
             <li>
               <Link
                 className="font-medium text-sm text-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center py-1 px-3"
-                to="/signin"
-                onClick={() => setDropdownOpen(!dropdownOpen)}
+                to=""
+                onClick={() => handleLogOut()}
               >
                 Sign Out
               </Link>
@@ -93,6 +119,7 @@ function DropdownProfile({
           </ul>
         </div>
       </Transition>
+  
     </div>
   )
 }

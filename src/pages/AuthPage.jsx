@@ -4,10 +4,10 @@ import { Tabs } from 'antd';
 
 const AuthPage = () => {
   
-    const onChange = (key) => {
-        // console.log(key);
-        setType(key)
-    };
+    // const onChange = (key) => {
+    //     // console.log(key);
+    //     setType(key)
+    // };
     const items = [
         {
             key: 'company',
@@ -28,7 +28,7 @@ const AuthPage = () => {
     return (
         <div className='pt-12'>
 
-            <Tabs size="large" type="card"  centered defaultActiveKey="1" items={items} onChange={onChange} animated/>
+            <Tabs size="large" type="card"  centered defaultActiveKey="1" items={items}  animated/>
             
         </div>
     );

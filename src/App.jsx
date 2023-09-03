@@ -27,22 +27,49 @@ import Attendance from './pages/Attendance';
 import AuthPage from './pages/AuthPage';
 import CompanyRegister from './pages/CompanyRegister';
 import { useAuth } from './Context/AuthContext';
+import { useLogin } from './Context/loginContext';
+import { BaseUrl } from './utils/BaseUrl';
+import axios from 'axios';
 
 function App() {
 
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isLogin, setIsLogin] = useState({
-    company: true,
-    employee:false
+    company: false,
+    employee:false,
+    admin:false,
   });
   const [auth, setAuth] = useAuth();
+  
+  const [userLogin, setUserLogin] = useLogin()
+  console.log(userLogin.company)
+  
+  const localStorageData = JSON.parse(localStorage.getItem("companyData"))
   // setAuth({ ...auth, login: true })
   // console.log(auth.login)
 useEffect(() => {
-  setAuth({ ...auth, company: false })
-}, [])
+  setAuth({ ...auth, company: true })
+  setIsLogin({ ...isLogin, company: userLogin.company })
+}, [userLogin.company,userLogin.employee,userLogin.admin])
 console.log(auth)
+console.log(isLogin)
+
+    //  call api
+		const getEmployee = async () => {
+			try {
+				const res = await axios.get(`${BaseUrl}/employee`);
+				console.log(res.data)
+				setAuth({ ...auth, users: res.data })
+			} catch (error) {
+				console.log(error)
+			}
+		 }
+		useEffect(() => {
+       getEmployee()
+    }, [])
+			
+	
 
 
   useEffect(() => {
@@ -59,7 +86,7 @@ console.log(auth)
       <div >
         {/* <Login/> */}
         {
-          isLogin.employee || isLogin.company?
+          userLogin.employee || userLogin.company?
             <div className="flex h-screen overflow-hidden">
               {/* Sidebar */}
               <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
