@@ -6,6 +6,7 @@ import user3 from '../../images/user-36-03.jpg'
 import user4 from '../../images/user-36-04.jpg'
 import user5 from '../../images/user-36-05.jpg'
 import user6 from '../../images/user-36-06.jpg'
+import profile from '../../images/profile.avif'
 
 const AboutUsMain = () => {
     return (
@@ -84,32 +85,32 @@ const AboutUsMain = () => {
                  <div className='w-40 h-[3px] bg-gray-400 mx-auto mb-10'></div>
                 <div className='grid grid-cols-2 md:grid-cols-3 gap-10'>
                     <div className='flex flex-col justify-center items-center gap-3'>
-                        <img className='w-[100px] h-[100px] rounded-full' src={user4} alt="" />
+                        <img className='w-[100px] h-[100px] rounded-full' src={profile} alt="" />
                         <h1 className='text-black text-xl font-bold dark:text-white'>Mitul</h1>
                         <h3 className='text-black/60 font-bold text-md dark:text-white/80'>Head Of Growth</h3>
                     </div>
                     <div className='flex flex-col justify-center items-center gap-3'>
-                        <img className='w-[100px] h-[100px] rounded-full' src={user2} alt="" />
+                        <img className='w-[100px] h-[100px] rounded-full' src={profile} alt="" />
                         <h1 className='text-black text-xl font-bold dark:text-white'>Mujahid</h1>
                         <h3 className='text-black/60 font-bold text-md dark:text-white/80'>Head Of Department</h3>
                     </div>
                     <div className='flex flex-col justify-center items-center gap-3'>
-                        <img className='w-[100px] h-[100px] rounded-full' src={user3} alt="" />
+                        <img className='w-[100px] h-[100px] rounded-full' src={profile} alt="" />
                         <h1 className='text-black text-xl font-bold dark:text-white'>Azad</h1>
                         <h3 className='text-black/60 font-bold text-md dark:text-white/80'>Manager</h3>
                     </div>
                     <div className='flex flex-col justify-center items-center gap-3'>
-                        <img className='w-[100px] h-[100px] rounded-full' src={user1} alt="" />
+                        <img className='w-[100px] h-[100px] rounded-full' src={profile} alt="" />
                         <h1 className='text-black text-xl font-bold dark:text-white'>Faisol</h1>
                         <h3 className='text-black/60 font-bold text-md dark:text-white/80'>Executive Officer</h3>
                     </div>
                     <div className='flex flex-col justify-center items-center gap-3'>
-                        <img className='w-[100px] h-[100px] rounded-full' src={user5} alt="" />
+                        <img className='w-[100px] h-[100px] rounded-full' src={profile} alt="" />
                         <h1 className='text-black text-xl font-bold dark:text-white'>Fahim</h1>
                         <h3 className='text-black/60 font-bold text-md dark:text-white/80'>Leader</h3>
                     </div>
                     <div className='flex flex-col justify-center items-center gap-3'>
-                        <img className='w-[100px] h-[100px] rounded-full' src={user6} alt="" />
+                        <img className='w-[100px] h-[100px] rounded-full' src={profile} alt="" />
                         <h1 className='text-black text-xl font-bold dark:text-white'>Usama</h1>
                         <h3 className='text-black/60 font-bold text-md dark:text-white/80'>Head Of Growth</h3>
                     </div>
