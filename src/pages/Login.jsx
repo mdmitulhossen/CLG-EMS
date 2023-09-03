@@ -45,7 +45,7 @@ const Login = ({ type }) => {
         password
       }
        console.log(data);
-      const loginEmployee = await axios.post("http://localhost:8000/api/employee/login", data)
+      const loginEmployee = await axios.post(`${BaseUrl}/employee/login`, data)
       console.log(loginEmployee.data);
        localStorage.removeItem('companyData')
        setUserLogin({ ...userLogin,company:false,employee:true,admin:false, users: loginEmployee.data })
