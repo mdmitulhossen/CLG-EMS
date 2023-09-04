@@ -2,16 +2,37 @@ import { Breadcrumb, Tag } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../css/Others-style/attendance.css'
+import { useLogin } from '../Context/loginContext';
+import axios from 'axios';
+import { BaseUrl } from '../utils/BaseUrl';
 
 const Attendance = () => {
     const [year, setYear] = useState(new Date().getFullYear());
+    const [approve, setApprove] = useState(false);
     const [month, setMonth] = useState(new Date().getMonth() + 1);
     const [totalDays, setTotalDays] = useState(0);
+    const [userLogin, setUserLogin] = useLogin()
 
     const monthFullName = ["January", "February", "March", "April", "May", "June", "July",
         "August", "September", "October", "November", "December"];
 
+console.log("attendace",userLogin)
 
+// get attedance api
+    const getAttendance = async () => {
+        const data = await axios.get(`${BaseUrl}/attendance`)
+        console.log("attttt",data.data)
+
+        const notApprove = data.data.filter((item)=>item.attendings[0].approved===false)
+        console.log("not apppp",notApprove[0].email)
+
+        const allemployee = await axios.get(`${BaseUrl}/employee`)
+        console.log("aaaa employyyee",allemployee.data)
+        const filterEmployee = allemployee.data.filter((item)=>item.email===notApprove[0].email)
+        console.log(filterEmployee)
+    }
+    getAttendance()
+       
     const calculateTotalDays = () => {
         const daysInMonth = new Date(year, month, 0).getDate();
         setTotalDays(daysInMonth);

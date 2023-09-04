@@ -36,7 +36,7 @@ const Login = ({ type }) => {
        toast.success("login successful!!");
       setTimeout(() => {
         window.location.reload()
-      }, 2000);
+      }, 1000);
     }
     else if(type=='Employee'){
       console.log("console paiche")
